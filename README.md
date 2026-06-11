@@ -1,5 +1,21 @@
 # 鏈結食代-打造學校午餐永續服務平台
 
+## 快速看懂
+
+![startup-school-lunch-sustainability 功能截圖](docs/preview.png)
+
+- 線上 Demo：https://atlasforcn.github.io/startup-school-lunch-sustainability/
+- 這個原型在做什麼：把鏈結食代做成學校午餐永續採購與營養管理平台。
+- 特色定位：特色是把菜單、營養、在地供應商、碳足跡與採購核准串在同一個校務流程。
+- 操作流程：安排每週菜單與營養目標 → 媒合在地供應商並看食材履歷 → 處理缺貨替代、班級回饋與採購核准
+
+<details>
+<summary>展開完整功能流程截圖</summary>
+
+![startup-school-lunch-sustainability 完整功能流程截圖](docs/flow.png)
+
+</details>
+
 這是一個可直接用瀏覽器開啟的靜態 demo repo，將「鏈結食代-打造學校午餐永續服務平台」概念做成學校午餐永續採購與營養管理平台原型。頁面採用純 HTML/CSS/JavaScript，沒有外部依賴，適合放在 GitHub Pages。
 
 ## 比賽與公開資訊
