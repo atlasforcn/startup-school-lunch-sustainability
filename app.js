@@ -1,4 +1,5 @@
 const STORAGE_KEY = "linking-lunch-sustainability-demo";
+const NAV_STORAGE_KEY = "linking-lunch-sustainability-nav-expanded";
 
 const days = [
   { id: "mon", label: "週一", date: "10/06" },
@@ -859,6 +860,36 @@ function setView(view) {
   }
 }
 
+function setNavExpanded(expanded) {
+  const toggle = $("#railToggle");
+  document.body.classList.toggle("nav-expanded", expanded);
+  toggle.setAttribute("aria-expanded", String(expanded));
+  toggle.setAttribute("aria-label", expanded ? "收合平台導覽" : "展開平台導覽");
+  toggle.setAttribute("title", expanded ? "收合平台導覽" : "展開平台導覽");
+  toggle.querySelector("span").textContent = expanded ? "‹" : "›";
+  writeStorage(NAV_STORAGE_KEY, expanded ? "1" : "0");
+}
+
+function restoreNavState() {
+  setNavExpanded(readStorage(NAV_STORAGE_KEY) === "1");
+}
+
+function readStorage(key) {
+  try {
+    return localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+
+function writeStorage(key, value) {
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+    // Demo remains usable when storage is unavailable.
+  }
+}
+
 function applyTemplateToSelectedDay(templateId) {
   state.menu[state.selectedDay] = cloneTemplate(templateId);
   saveState();
@@ -927,6 +958,10 @@ function renderAll() {
 }
 
 function bindEvents() {
+  $("#railToggle").addEventListener("click", () => {
+    setNavExpanded(!document.body.classList.contains("nav-expanded"));
+  });
+
   $all(".nav-button").forEach((button) => {
     button.addEventListener("click", () => setView(button.dataset.view));
   });
@@ -1007,4 +1042,5 @@ function bindEvents() {
 
 renderAll();
 bindEvents();
+restoreNavState();
 setView(state.selectedView);
